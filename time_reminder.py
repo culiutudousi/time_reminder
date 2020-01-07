@@ -27,8 +27,8 @@ class MainWindow(QWidget):
         self.rest_widget.setRemindContent('Work!')
         self.rest_widget.setTime(10)
 
-        self.work_widget.set_button_enable_signal.connect(self.setButtonEnable)
-        self.rest_widget.set_button_enable_signal.connect(self.setButtonEnable)
+        self.work_widget.set_button_enable_signal.connect(self.setComponentsEnable)
+        self.rest_widget.set_button_enable_signal.connect(self.setComponentsEnable)
 
         self.box = QHBoxLayout()
         self.box.addWidget(self.work_frame)
@@ -40,9 +40,12 @@ class MainWindow(QWidget):
         self.setWindowTitle('Time Reminder')
         self.show()
 
-    def setButtonEnable(self, bool):
+    def setComponentsEnable(self, bool):
         self.work_widget.setButtonEnable(bool)
+        self.work_widget.setSliderEnable(bool)
         self.rest_widget.setButtonEnable(bool)
+        self.rest_widget.setSliderEnable(bool)
+
 
 class ReminderWidget(QWidget):
 
@@ -71,6 +74,9 @@ class ReminderWidget(QWidget):
 
     def setButtonEnable(self, bool):
         self.start_button.setEnabled(bool)
+
+    def setSliderEnable(self, bool):
+        self.time_setting.setSliderEnable(bool)
 
     def setRemindContent(self, str):
         self.remind_content = str
@@ -138,6 +144,9 @@ class TimeSettingWidget(QWidget):
 
     def setInactiveStyle(self):
         self.lcd.setStyleSheet("QLCDNumber{ color: black;}")
+
+    def setSliderEnable(self, bool):
+        self.sld.setEnabled(bool)
 
     def freshDisplayTime(self):
         self.lcd.display(self.sld.value())
