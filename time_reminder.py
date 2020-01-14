@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import sys
+from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt, QTimer, pyqtSignal
 from PyQt5.QtWidgets import (QWidget, QLCDNumber, QSlider, QLabel, QPushButton, QMessageBox,
                              QVBoxLayout, QHBoxLayout, QApplication, QFrame)
@@ -38,6 +39,7 @@ class MainWindow(QWidget):
 
         self.setGeometry(300, 300, 270, 200)
         self.setWindowTitle('Time Reminder')
+        self.setWindowIcon(QIcon('time_reminder.png'))
         self.show()
 
     def setComponentsEnable(self, bool):
@@ -159,4 +161,3 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     ex = MainWindow()
     sys.exit(app.exec_())
-    print('test')
